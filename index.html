@@ -6,35 +6,29 @@
 <body>
 <h1 style="text-align:center;">HelloWorld</h1>
 <br />
-<pre style="text-align:center;">
 
-普工 服务员 外卖 客服 快递 <del>保安 工地 销售 </del>
-<del>司机 理发师 厨师 会计 
-汽修 医护 空乘 教师 码农 机械 土木 律师 银行 翻译 公务员
-作家 美工 声优 音乐</del>
-
-我
-理智
-情绪
-身体
-
-
-长大成人
- 
 <DIV id="CountMsg" class="HotDate">
 <span id="td">00天</span>
 <span id="th">00时</span>
 <span id="tm">00分</span>
 <span id="ts">00秒</span>
 </DIV>
+<br>
+<div id="newtime" class="hotdate">
+<input type="datetime-local" id="mynewtime">
+</div>
 
-
-</pre>
 
 <script type="text/javascript">
-function getRTime(){
 
-var EndTime= new Date('2018/12/21 15:30:00'); //截止时间
+function addTime() {
+var as = document.getElementById("mynewtime").value;
+return as;
+}
+
+function getRTime(){
+var as = addTime();
+var EndTime= new Date(as); //截止时间
 var NowTime = new Date();
 var t =EndTime.getTime() - NowTime.getTime();
 
@@ -46,7 +40,7 @@ var s=Math.floor(t/1000%60);
 document.getElementById("td").innerHTML = d + "天";
 document.getElementById("th").innerHTML = h + "时";
 document.getElementById("tm").innerHTML = m + "分";
-document.getElementById("ts").innerHTML = s + "秒"  ;
+document.getElementById("ts").innerHTML = s + "秒";
 }
 setInterval(getRTime,1000);
 </script>
