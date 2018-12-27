@@ -14,6 +14,12 @@
 <span id="ts">00秒</span>
 </DIV>
 <br>
+<br>
+<br>
+<span>本小时还剩余：</span>
+<span id="tsm">00分</span>
+<span id="tss">00秒</span>
+<br>
 <div id="newtime" style="text-align:center" class="hotdate">
 <input type="datetime-local" id="mynewtime">
 </div>
@@ -27,9 +33,15 @@ return as;
 }
 
 function getRTime(){
-var as = addTime();
+var as = document.getElementById("mynewtime").value;
 var EndTime= new Date(as); //截止时间
 var NowTime = new Date();
+var toshours = new Date();
+
+var Thishour = NowTime.getHours() + 1;
+var Thishours = toshours.setHours(Thishour,0,0,0);
+
+var tt = Thishours - NowTime.getTime();
 var t =EndTime.getTime() - NowTime.getTime();
 
 var d=Math.floor(t/1000/60/60/24);
@@ -37,10 +49,19 @@ var h=Math.floor(t/1000/60/60%24);
 var m=Math.floor(t/1000/60%60);
 var s=Math.floor(t/1000%60);
  
+ 
+var sm=Math.floor(tt/1000/60%60);
+var ss=Math.floor(tt/1000%60);
+
+ 
 document.getElementById("td").innerHTML = d + "天";
 document.getElementById("th").innerHTML = h + "时";
 document.getElementById("tm").innerHTML = m + "分";
 document.getElementById("ts").innerHTML = s + "秒";
+
+document.getElementById("tsm").innerHTML = sm + "分";
+document.getElementById("tss").innerHTML = ss + "秒";
+
 }
 setInterval(getRTime,1000);
 </script>
