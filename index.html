@@ -9,15 +9,16 @@
 <br />
 
 <DIV id="CountMsg" style="text-align:center" class="HotDate">
+<span id="tsh">距离00点还剩余：</span>
+<span id="tsm">00分</span>
+<span id="tss">00秒</span>
+<br>
+<br>
+<br>
 <span id="td">00天</span>
 <span id="th">00时</span>
 <span id="tm">00分</span>
 <span id="ts">00秒</span>
-<br>
-<br>
-<span>本小时还剩余：</span>
-<span id="tsm">00分</span>
-<span id="tss">00秒</span>
 </DIV>
 <br>
 <div id="newtime" style="text-align:center" class="hotdate">
@@ -73,9 +74,9 @@ document.getElementById("th").innerHTML = h + "时";
 document.getElementById("tm").innerHTML = m + "分";
 document.getElementById("ts").innerHTML = s + "秒";
 
+document.getElementById("tsh").innerHTML = "距离" + Thishour + "点还剩余:";
 document.getElementById("tsm").innerHTML = sm + "分";
 document.getElementById("tss").innerHTML = ss + "秒";
-
 }
 setInterval(getRTime,1000);
 </script>
