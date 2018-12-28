@@ -22,14 +22,28 @@
 <br>
 <div id="newtime" style="text-align:center" class="hotdate">
 <input type="datetime-local" id="mynewtime">
+<button onclick="addTime()">+20</button>
 </div>
 
 
 <script type="text/javascript">
 
 function addTime() {
-var as = document.getElementById("mynewtime").value;
-return as;
+var NowTime = new Date();
+var pm = NowTime.getMinutes() + 20;
+var ph = NowTime.getHours();
+
+if ( pm > 60 ) {
+ph = ph + 1;
+pm = pm - 60;
+}
+var pt = NowTime.setHours(ph+8,pm);
+var ptt = new Date(pt);
+var ptts = ptt.toISOString();
+var str = ptts.replace("Z","");
+document.getElementById("mynewtime").value =str;
+//document.getElementById("pmm").innerHTML = ptts;
+
 }
 
 function getRTime(){
