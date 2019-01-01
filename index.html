@@ -26,8 +26,110 @@
 <button onclick="addTime()">+20</button>
 </div>
 
+<div id="textmod" style="text-align:center;"> 
+<hr>
+<textarea id="texta" style="text-align:center;height:300;width:130"> </textarea>
+<br>
+<!--
+<button onclick="ntime()">time</button> 
+<span id="nowtext" style="text-allign:center;display:block">now position:text</span> 
+<button onclick="open_win()">open</button>
+-->
+<button onclick="addtext()">✓</button>
+<button onclick="aclean()">clean</button>
+<select id="cnumber">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+</select>
+<button onclick="aread()">read</button>
+<button onclick="asave()">save</button>
+<br><br>
+<div id="findmod" style="display:none">
+<input type="text" id="findName">
+<button onclick="bread()">read</button>
+<button onclick="bsave()">save</button>
+<button onclick="bremove()">delect</button>
+<button onclick="findAll()">find</button>
+<br>
+</div>
+</div>
+<br>
+<div id="option" style="text-align:center;">
+<button onclick="ahide()">hide</button>
+<button onclick="ashow()">show</button>
 
+</div>
 <script type="text/javascript">
+
+function bremove() {
+var fn = document.getElementById("findName").value;
+localStorage.removeItem(fn);
+}
+
+function bsave() {
+var cnumber = document.getElementById("findName").value;
+var itexta = document.getElementById("texta").value;
+localStorage.setItem(cnumber,itexta);
+}
+
+function bread() {
+var cnumber = document.getElementById("findName").value;
+var otexta = localStorage.getItem(cnumber);
+document.getElementById("texta").value = otexta;
+}
+
+function findAll() {
+var keyname = "";
+  for (var i=0,n=localStorage.length; i<n; i++)
+  {	
+	keyname = keyname + localStorage.key(i) + "\n";
+  }
+document.getElementById("texta").value = keyname;
+}
+
+function ntime() {
+var nowTime = new Date();
+var n = nowTime.toLocaleString();
+var text = document.getElementById("texta").value;
+document.getElementById("texta").value = "\n" + n + "\n" + text;
+}
+
+function aread() {
+var cnumber = document.getElementById("cnumber").value;
+var otexta = localStorage.getItem(cnumber);
+document.getElementById("texta").value = otexta;
+}
+
+function asave() {
+var cnumber = document.getElementById("cnumber").value;
+var itexta = document.getElementById("texta").value;
+localStorage.setItem(cnumber,itexta);
+}
+
+function ashow() {
+document.getElementById("findmod").style.display="list-item";
+}
+
+function ahide() {
+document.getElementById("findmod").style.display="none";
+}
+
+function open_win() {
+	window.open("file:///C:/Users/Administrator/Desktop/%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9/counttimer.htm","_blank","left=1000, top=80, toolbar=yes, location=yes, directories=no, status=no, menubar=yes, scrollbars=yes, resizable=no, copyhistory=yes, width=400, height=700");
+}
+
+function aclean() {
+document.getElementById("texta").value = "";
+document.getElementById("findName").value = "";
+}
+
+function addtext() {
+var text = document.getElementById("texta").value;
+document.getElementById("texta").value = text + "✓";
+}
 
 function addTime() {
 var NowTime = new Date();
