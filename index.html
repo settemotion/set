@@ -60,8 +60,10 @@
 <input type="text" id="findName">
 <button onclick="bread()">read</button>
 <button onclick="bsave()">save</button>
-<button onclick="bremove()">delect</button>
+<button onclick="bremove()">delete</button>
 <button onclick="findAll()">find</button>
+<button onclick="outputValue()">output</button>
+<button onclick="inputValue()">input</button>
 <br>
 </div>
 </div>
@@ -71,6 +73,28 @@
 <button onclick="ashow()">show</button>
 </div>
 <script type="text/javascript">
+
+function inputValue() {
+var texta = document.getElementById("texta").value;
+var tvalue = texta.split("!@");
+for (var i = 0, n = tvalue.length;i < n;i++) {
+	var a1 = tvalue[i];
+	var keynamevalue = a1.split("@@");
+	var a2 = keynamevalue[0],a3 = keynamevalue[1];
+	localStorage.setItem(a2,a3);
+}
+document.getElementById("texta").value = "finish";
+}
+
+function outputValue() {
+var optext = "";
+for (var i = 0, n = localStorage.length;i < n;i++) {
+	var keyname = localStorage.key(i);
+	var keyvalue = localStorage.getItem(keyname);
+	optext = optext + "!@" + keyname + "@@" + keyvalue;
+}
+document.getElementById("texta").value = optext;
+} 
 
 function closeAlert() {
 document.getElementById("confirm").style.display="none";
@@ -179,7 +203,6 @@ function addTime() {
 var NowTime = new Date();
 var pm = NowTime.getMinutes() + 20;
 var ph = NowTime.getHours();
-
 if ( pm > 60 ) {
 ph = ph + 1;
 pm = pm - 60;
@@ -190,7 +213,6 @@ var ptts = ptt.toISOString();
 var str = ptts.replace("Z","");
 document.getElementById("mynewtime").value =str;
 //document.getElementById("pmm").innerHTML = ptts;
-
 }
 
 function getRTime(){
