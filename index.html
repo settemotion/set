@@ -23,12 +23,18 @@
 <br>
 <div id="newtime" style="text-align:center" class="hotdate">
 <input type="datetime-local" id="mynewtime">
-<button onclick="addTime()">+20</button>
+<button onclick="addTime()" onmousedown="addpg1()">+25</button>
+<br><br>
+<progress id="pg1">@v@</progress><br>
+<button onclick="setMax(360)">6hours</button>
+<button onclick="setMax(180)">3hours</button>
 <br>
+<!--
 <span id="number">NaN</span>
 <button onclick="plus()">+</button>
 <button onclick="minus()">-</button>
 <button onclick="zero()">0</button>
+-->
 </div>
 
 <div id="textmod" style="text-align:center;"> 
@@ -73,6 +79,17 @@
 <button onclick="ashow()">show</button>
 </div>
 <script type="text/javascript">
+
+function addpg1() {
+var n = document.getElementById("pg1").value;
+n = n + 25;
+document.getElementById("pg1").value = n;
+}
+
+function setMax(n) {
+document.getElementById("pg1").max = n;
+document.getElementById("pg1").value = 5;
+}
 
 function inputValue() {
 var texta = document.getElementById("texta").value;
@@ -201,7 +218,7 @@ document.getElementById("texta").value = text + "✓";
 
 function addTime() {
 var NowTime = new Date();
-var pm = NowTime.getMinutes() + 20;
+var pm = NowTime.getMinutes() + 25;
 var ph = NowTime.getHours();
 if ( pm > 60 ) {
 ph = ph + 1;
