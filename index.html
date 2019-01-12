@@ -5,9 +5,7 @@
 <title>settemotion</title>
 </head>
 <body>
-<h1 style="text-align:center;">HelloWorld</h1>
-<br />
-
+<h1 style="text-align:center;">HelloWorld</h1><br>
 <DIV id="CountMsg" style="text-align:center" class="HotDate">
 <span id="tsh">距离00点还剩余：</span>
 <span id="tsm">00分</span>
@@ -20,34 +18,21 @@
 <span id="tm">00分</span>
 <span id="ts">00秒</span>
 </DIV>
-<br>
 <div id="newtime" style="text-align:center" class="hotdate">
-<input type="datetime-local" id="mynewtime">
-<button onclick="addTime()" onmousedown="addpg1()">+25</button>
+<input type="datetime-local" id="mynewtime"><br>
+<button onclick="addTime()" onmousedown="addpg1()">+20</button>
 <br><br>
 <progress id="pg1">@v@</progress><br>
 <button onclick="setMax(360)">6hours</button>
 <button onclick="setMax(180)">3hours</button>
 <br>
-<!--
-<span id="number">NaN</span>
-<button onclick="plus()">+</button>
-<button onclick="minus()">-</button>
-<button onclick="zero()">0</button>
--->
 </div>
-
 <div id="textmod" style="text-align:center;"> 
 <hr>
 <textarea id="texta" style="text-align:center;height:300;width:130"> </textarea>
 <br>
-<!--
-<button onclick="ntime()">time</button> 
-<span id="nowtext" style="text-allign:center;display:block">now position:text</span> 
-<button onclick="open_win()">open</button>
--->
 <button onclick="addtext()">✓</button>
-<button onclick="aclean()">clean</button>
+<button onclick="aclear()">clear</button>
 <select id="cnumber">
   <option value="1">1</option>
   <option value="2">2</option>
@@ -70,6 +55,7 @@
 <button onclick="findAll()">find</button>
 <button onclick="outputValue()">output</button>
 <button onclick="inputValue()">input</button>
+<button onclick="clearAll()">clearAll</button>
 <br>
 </div>
 </div>
@@ -78,17 +64,23 @@
 <button onclick="ahide()">hide</button>
 <button onclick="ashow()">show</button>
 </div>
+
 <script type="text/javascript">
 
 function addpg1() {
 var n = document.getElementById("pg1").value;
-n = n + 25;
+n = n + 20;
 document.getElementById("pg1").value = n;
 }
 
 function setMax(n) {
 document.getElementById("pg1").max = n;
 document.getElementById("pg1").value = 5;
+}
+
+function clearAll() {
+localStorage.clear();
+document.getElementById("texta").value = "clearAll";
 }
 
 function inputValue() {
@@ -121,33 +113,6 @@ function saveAlert() {
 document.getElementById("confirm").style.display="list-item";
 }
 
-function minus() {
-var count = localStorage.getItem("CountNumnber");
-if (count != null) {
-count =--count;
-} else {
-count = 0
-}
-localStorage.setItem("CountNumnber",count);
-document.getElementById("number").innerHTML = count;
-}
-
-function plus() {
-var count = localStorage.getItem("CountNumnber");
-if (count != null) {
-count = ++count;
-} else {
-count = 0
-}
-localStorage.setItem("CountNumnber",count);
-document.getElementById("number").innerHTML = count;
-}
-
-function zero() {
-localStorage.setItem("CountNumnber",0);
-document.getElementById("number").innerHTML = 0;
-}
-
 function bremove() {
 var fn = document.getElementById("findName").value;
 localStorage.removeItem(fn);
@@ -174,13 +139,6 @@ var keyname = "";
 document.getElementById("texta").value = keyname;
 }
 
-function ntime() {
-var nowTime = new Date();
-var n = nowTime.toLocaleString();
-var text = document.getElementById("texta").value;
-document.getElementById("texta").value = "\n" + n + "\n" + text;
-}
-
 function aread() {
 var cnumber = document.getElementById("cnumber").value;
 var otexta = localStorage.getItem(cnumber);
@@ -202,11 +160,7 @@ function ahide() {
 document.getElementById("findmod").style.display="none";
 }
 
-function open_win() {
-	window.open("file:///C:/Users/Administrator/Desktop/%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9/counttimer.htm","_blank","left=1000, top=80, toolbar=yes, location=yes, directories=no, status=no, menubar=yes, scrollbars=yes, resizable=no, copyhistory=yes, width=400, height=700");
-}
-
-function aclean() {
+function aclear() {
 document.getElementById("texta").value = "";
 document.getElementById("findName").value = "";
 }
@@ -218,7 +172,7 @@ document.getElementById("texta").value = text + "✓";
 
 function addTime() {
 var NowTime = new Date();
-var pm = NowTime.getMinutes() + 25;
+var pm = NowTime.getMinutes() + 20;
 var ph = NowTime.getHours();
 if ( pm > 60 ) {
 ph = ph + 1;
